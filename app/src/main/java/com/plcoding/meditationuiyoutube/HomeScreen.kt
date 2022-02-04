@@ -17,7 +17,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.plcoding.meditationuiyoutube.ui.theme.*
@@ -170,11 +172,52 @@ fun FeatureSection(features: List<Feature>) {
             content = {
 
 
-                items(features.size){}
+                items(features.size) {}
             })
 
     }
 }
 
 
+@Composable
+fun FeatureItem(feature: Feature) {
 
+
+    BoxWithConstraints(
+        modifier = Modifier
+                .padding(8.dp)
+                .aspectRatio(1f) // forces the box to be a square where h==w
+                .clip(RoundedCornerShape(10.dp))
+                .background(feature.darkColor)
+    ) {
+
+        val h = constraints.maxHeight
+        val w = constraints.maxWidth
+
+        //define medium colored path
+
+        val mediumColoredPoint1 = Offset(0f, h * .3f)
+        val mediumColoredPoint2 = Offset(w * .1f, h * .6f)
+        val mediumColoredPoint3 = Offset(w * .4f, h * .2f)
+        val mediumColoredPoint4 = Offset(w * .75f, h * .75f)
+        val mediumColoredPoint5 = Offset(w * 1.3f, -h.toFloat())
+
+        val mediumColoredPath = Path().apply {
+
+            //move to first coordinate
+            moveTo(mediumColoredPoint1.x, mediumColoredPoint1.y)
+
+            //draw line to connect to the 2nd point and curve it
+            quadraticBezierTo(
+                x1 = mediumColoredPoint2.x,
+                y1 = mediumColoredPoint2.y,
+
+                //to smoothen the curve divide the distance by 2
+                x2 =(mediumColoredPoint1.x - mediumColoredPoint2.x) /2,
+                y2 =(mediumColoredPoint2.y - mediumColoredPoint2.y) /2
+            )
+
+        }
+    }
+
+}
