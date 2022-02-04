@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.plcoding.meditationuiyoutube.ui.theme.*
@@ -208,15 +209,40 @@ fun FeatureItem(feature: Feature) {
             moveTo(mediumColoredPoint1.x, mediumColoredPoint1.y)
 
             //draw line to connect to the 2nd point and curve it
-            quadraticBezierTo(
-                x1 = mediumColoredPoint2.x,
-                y1 = mediumColoredPoint2.y,
 
-                //to smoothen the curve divide the distance by 2
-                x2 =(mediumColoredPoint1.x - mediumColoredPoint2.x) /2,
-                y2 =(mediumColoredPoint2.y - mediumColoredPoint2.y) /2
-            )
+            standardQuadFromTo(mediumColoredPoint1, mediumColoredPoint2)
+            standardQuadFromTo(mediumColoredPoint2, mediumColoredPoint3)
+            standardQuadFromTo(mediumColoredPoint3, mediumColoredPoint4)
+            standardQuadFromTo(mediumColoredPoint4, mediumColoredPoint5)
+            //draw normal points making a path that we can then fill with  color
 
+            lineTo(w + 100f, h + 100f)
+            lineTo(-100f, h + 100f)
+            close()
+
+        }
+
+
+        //light colored path
+        val lightPoint1 = Offset(0f, h * .35f)
+        val lightPoint2 = Offset(w * .1f, h * .4f)
+        val lightPoint3 = Offset(w * .3f, h * .35f)
+        val lightPoint4 = Offset(w * .65f, h.toFloat())
+        val lightPoint5 = Offset(w * 1.4f, -h.toFloat() / 3f)
+
+        val lightColoredPath = Path().apply {
+
+            moveTo(lightPoint1.x, lightPoint1.y)
+            standardQuadFromTo(lightPoint1, lightPoint2)
+            standardQuadFromTo(lightPoint2, lightPoint3)
+            standardQuadFromTo(lightPoint3, lightPoint4)
+            standardQuadFromTo(lightPoint4, lightPoint5)
+
+
+            //draw normal points making a path that we can then fill with  color
+            lineTo(w + 100f, h + 100f)
+            lineTo(-100f, h + 100f)
+            close()
         }
     }
 
