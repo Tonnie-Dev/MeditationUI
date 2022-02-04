@@ -308,24 +308,21 @@ fun FeatureItem(feature: Feature) {
             )
 
             //button
-            Button(
-                onClick = { /*TODO*/ },
-                modifier = Modifier
-                        .align(Alignment.BottomEnd)
-                        .clip(
-                            RoundedCornerShape(10.dp)
-                        )
-                        .background(ButtonBlue)
-                        .padding(vertical = 6.dp, horizontal = 15.dp)
-            ) {
 
                 Text(
                     text = "Start",
                     color = TextWhite,
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,  modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .clickable {  }
+                            .clip(
+                                RoundedCornerShape(10.dp)
+                            )
+                            .background(ButtonBlue)
+                            .padding(vertical = 6.dp, horizontal = 15.dp)
                 )
-            }
+
         }
 
     }
