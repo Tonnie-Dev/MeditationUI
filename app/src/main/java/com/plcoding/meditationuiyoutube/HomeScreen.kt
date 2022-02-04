@@ -38,6 +38,31 @@ fun HomeScreen() {
             GreetingSection()
             ChipSection(chips = listOf("Sweet Sleep", "Insomnia", "Depression", "Rejection"))
             CurrentMeditation()
+            FeatureSection(features = listOf(Feature(
+                title = "Sleep Meditation",
+                iconId = R.drawable.ic_headphone,
+                lightColor = BlueViolet1,
+                mediumColor = BlueViolet2,
+                darkColor = BlueViolet3
+            ),Feature(
+                title = "Tips for Sleeping",
+                iconId = R.drawable.ic_videocam,
+                lightColor = LightGreen1,
+                mediumColor = LightGreen2,
+                darkColor = LightGreen3
+            ),Feature(
+                title = "Night Island",
+                iconId = R.drawable.ic_headphone,
+                lightColor = OrangeYellow1,
+                mediumColor = OrangeYellow2,
+                darkColor = OrangeYellow3
+            ),Feature(
+                title = "Calming Sounds",
+                iconId = R.drawable.ic_headphone,
+                lightColor = Beige1,
+                mediumColor = Beige2,
+                darkColor = Beige3
+            ),))
         }
     }
 }
