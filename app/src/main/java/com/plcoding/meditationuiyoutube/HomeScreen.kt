@@ -131,7 +131,7 @@ fun CurrentMeditation() {
 
         Box(
             modifier = Modifier
-                   
+
                     .clip(CircleShape)
                     .background(ButtonBlue)
                     .padding(16.dp),
@@ -142,7 +142,7 @@ fun CurrentMeditation() {
                 painter = painterResource(id = R.drawable.ic_play),
                 contentDescription = "Play",
                 tint = Color.White,
-                modifier = Modifier.size(16.dp)
+                modifier = Modifier.size(24.dp)
             )
         }
     }
