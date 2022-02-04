@@ -1,5 +1,6 @@
 package com.plcoding.meditationuiyoutube
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,7 +21,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.plcoding.meditationuiyoutube.ui.theme.*
@@ -244,6 +244,15 @@ fun FeatureItem(feature: Feature) {
             lineTo(-100f, h + 100f)
             close()
         }
+
+        //draw the paths using canvas
+
+        Canvas(modifier = Modifier.fillMaxSize(), onDraw = {
+
+            drawPath(mediumColoredPath, color = feature.mediumColor)
+            drawPath(lightColoredPath, color = feature.lightColor)
+        })
+
     }
 
 }
