@@ -10,10 +10,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +19,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.plcoding.meditationuiyoutube.ui.theme.*
 
 @Composable
@@ -252,6 +251,53 @@ fun FeatureItem(feature: Feature) {
             drawPath(mediumColoredPath, color = feature.mediumColor)
             drawPath(lightColoredPath, color = feature.lightColor)
         })
+
+
+        //Draw the box container
+        Box(
+            modifier = Modifier
+                    .fillMaxSize()
+                    .padding(15.dp)
+        ) {
+
+            Text(
+                text = feature.title,
+                style = MaterialTheme.typography.h2,
+                lineHeight = 26.sp,
+                modifier = Modifier.align(
+                    Alignment.TopStart
+                )
+            )
+
+            Icon(
+                painter = painterResource(id = feature.iconId),
+                contentDescription = feature.title,
+                tint = Color.White,
+                modifier = Modifier.align(
+                    Alignment.BottomStart
+                )
+            )
+
+            //button
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .clip(
+                            RoundedCornerShape(10.dp)
+                        )
+                        .background(ButtonBlue)
+                        .padding(vertical = 6.dp, horizontal = 15.dp)
+            ) {
+
+                Text(
+                    text = "Start",
+                    color = TextWhite,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
 
     }
 
