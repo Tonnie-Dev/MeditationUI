@@ -172,7 +172,11 @@ fun FeatureSection(features: List<Feature>) {
             content = {
 
 
-                items(features.size) {}
+                items(features.size) { i ->
+                    
+                    
+                    FeatureItem(feature = features[i])
+                }
             })
 
     }
