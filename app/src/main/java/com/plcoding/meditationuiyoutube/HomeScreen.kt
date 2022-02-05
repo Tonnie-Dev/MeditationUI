@@ -247,14 +247,18 @@ fun FeatureItem(feature: Feature) {
             lineTo(w + 100f, h + 100f)
             lineTo(-100f, h + 100f)
             close()
+/*
+            lineTo(w - 30f, h - 40f)
+            lineTo(50f, h - 40f)
+            close()*/
 
         }
 
 
         //light colored path
-        val lightPoint1 = Offset(0f, h * .35f)
-        val lightPoint2 = Offset(w * .1f, h * .4f)
-        val lightPoint3 = Offset(w * .3f, h * .35f)
+        val lightPoint1 = Offset(0f, h * .5f)
+        val lightPoint2 = Offset(w * .1f, h * .6f)
+        val lightPoint3 = Offset(w * .3f, h * .55f)
         val lightPoint4 = Offset(w * .65f, h.toFloat())
         val lightPoint5 = Offset(w * 1.4f, -h.toFloat() / 3f)
 
@@ -265,12 +269,13 @@ fun FeatureItem(feature: Feature) {
             standardQuadFromTo(lightPoint2, lightPoint3)
             standardQuadFromTo(lightPoint3, lightPoint4)
             standardQuadFromTo(lightPoint4, lightPoint5)
-
-
-            //draw normal points making a path that we can then fill with  color
-            lineTo(w + 100f, h + 100f)
+           lineTo(w + 100f, h + 100f)
             lineTo(-100f, h + 100f)
             close()
+            //draw normal points making a path that we can then fill with  color
+          /*  lineTo(w - 30f, h - 40f)
+            lineTo(50f, h - 40f)
+            close()*/
         }
 
         //draw the paths using canvas
@@ -278,7 +283,7 @@ fun FeatureItem(feature: Feature) {
         Canvas(modifier = Modifier.fillMaxSize(), onDraw = {
 
             drawPath(mediumColoredPath, color = feature.mediumColor)
-            drawPath(lightColoredPath, color = feature.lightColor)
+          drawPath(lightColoredPath, color = feature.lightColor)
         })
 
 
@@ -315,7 +320,7 @@ fun FeatureItem(feature: Feature) {
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,  modifier = Modifier
                             .align(Alignment.BottomEnd)
-                            .clickable {  }
+                            .clickable { }
                             .clip(
                                 RoundedCornerShape(10.dp)
                             )
@@ -327,4 +332,10 @@ fun FeatureItem(feature: Feature) {
 
     }
 
+}
+
+
+@Composable
+fun BottomMenuContent() {
+    
 }
