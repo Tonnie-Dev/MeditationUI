@@ -10,7 +10,10 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.plcoding.meditationuiyoutube.ui.theme.*
@@ -29,8 +33,9 @@ fun HomeScreen() {
 
     Box(
         modifier = Modifier
-                .fillMaxSize()
+
                 .background(DeepBlue)
+                .fillMaxSize()
     ) {
 
 
@@ -38,32 +43,52 @@ fun HomeScreen() {
             GreetingSection()
             ChipSection(chips = listOf("Sweet Sleep", "Insomnia", "Depression", "Rejection"))
             CurrentMeditation()
-            FeatureSection(features = listOf(Feature(
-                title = "Sleep Meditation",
-                iconId = R.drawable.ic_headphone,
-                lightColor = BlueViolet1,
-                mediumColor = BlueViolet2,
-                darkColor = BlueViolet3
-            ),Feature(
-                title = "Tips for Sleeping",
-                iconId = R.drawable.ic_videocam,
-                lightColor = LightGreen1,
-                mediumColor = LightGreen2,
-                darkColor = LightGreen3
-            ),Feature(
-                title = "Night Island",
-                iconId = R.drawable.ic_headphone,
-                lightColor = OrangeYellow1,
-                mediumColor = OrangeYellow2,
-                darkColor = OrangeYellow3
-            ),Feature(
-                title = "Calming Sounds",
-                iconId = R.drawable.ic_headphone,
-                lightColor = Beige1,
-                mediumColor = Beige2,
-                darkColor = Beige3
-            ),))
+            FeatureSection(
+                features = listOf(
+                    Feature(
+                        title = "Sleep Meditation",
+                        iconId = R.drawable.ic_headphone,
+                        lightColor = BlueViolet1,
+                        mediumColor = BlueViolet2,
+                        darkColor = BlueViolet3
+                    ),
+                    Feature(
+                        title = "Tips for Sleeping",
+                        iconId = R.drawable.ic_videocam,
+                        lightColor = LightGreen1,
+                        mediumColor = LightGreen2,
+                        darkColor = LightGreen3
+                    ),
+                    Feature(
+                        title = "Night Island",
+                        iconId = R.drawable.ic_headphone,
+                        lightColor = OrangeYellow1,
+                        mediumColor = OrangeYellow2,
+                        darkColor = OrangeYellow3
+                    ),
+                    Feature(
+                        title = "Calming Sounds",
+                        iconId = R.drawable.ic_headphone,
+                        lightColor = Beige1,
+                        mediumColor = Beige2,
+                        darkColor = Beige3
+                    )
+                )
+            )
+
         }
+        BottomMenu(
+            items = listOf(
+                BottomMenuContent(title = "Home", iconId = R.drawable.ic_home),
+                BottomMenuContent(title = "Meditate", iconId = R.drawable.ic_bubble),
+                BottomMenuContent(title = "Sleep", iconId = R.drawable.ic_moon),
+                BottomMenuContent(title = "Music", iconId = R.drawable.ic_music),
+                BottomMenuContent(title = "Profile", iconId = R.drawable.ic_profile)
+
+            ),
+
+            modifier = Modifier.align(Alignment.BottomCenter)
+        )
     }
 }
 
@@ -198,8 +223,8 @@ fun FeatureSection(features: List<Feature>) {
 
 
                 items(features.size) { i ->
-                    
-                    
+
+
                     FeatureItem(feature = features[i])
                 }
             })
@@ -269,13 +294,13 @@ fun FeatureItem(feature: Feature) {
             standardQuadFromTo(lightPoint2, lightPoint3)
             standardQuadFromTo(lightPoint3, lightPoint4)
             standardQuadFromTo(lightPoint4, lightPoint5)
-           lineTo(w + 100f, h + 100f)
+            lineTo(w + 100f, h + 100f)
             lineTo(-100f, h + 100f)
             close()
             //draw normal points making a path that we can then fill with  color
-          /*  lineTo(w - 30f, h - 40f)
-            lineTo(50f, h - 40f)
-            close()*/
+            /*  lineTo(w - 30f, h - 40f)
+              lineTo(50f, h - 40f)
+              close()*/
         }
 
         //draw the paths using canvas
@@ -283,7 +308,7 @@ fun FeatureItem(feature: Feature) {
         Canvas(modifier = Modifier.fillMaxSize(), onDraw = {
 
             drawPath(mediumColoredPath, color = feature.mediumColor)
-          drawPath(lightColoredPath, color = feature.lightColor)
+            drawPath(lightColoredPath, color = feature.lightColor)
         })
 
 
@@ -314,19 +339,19 @@ fun FeatureItem(feature: Feature) {
 
             //button
 
-                Text(
-                    text = "Start",
-                    color = TextWhite,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,  modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .clickable { }
-                            .clip(
-                                RoundedCornerShape(10.dp)
-                            )
-                            .background(ButtonBlue)
-                            .padding(vertical = 6.dp, horizontal = 15.dp)
-                )
+            Text(
+                text = "Start",
+                color = TextWhite,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold, modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .clickable { }
+                        .clip(
+                            RoundedCornerShape(10.dp)
+                        )
+                        .background(ButtonBlue)
+                        .padding(vertical = 6.dp, horizontal = 15.dp)
+            )
 
         }
 
@@ -336,6 +361,106 @@ fun FeatureItem(feature: Feature) {
 
 
 @Composable
-fun BottomMenuContent() {
-    
+fun BottomMenu(
+    items: List<BottomMenuContent>,
+    modifier: Modifier = Modifier,
+    activeHighlightedColor: Color = ButtonBlue,
+    activeTextColor: Color = Color.White,
+    inactiveTextColor: Color = AquaBlue,
+    initialSelectedItemIndex: Int = 0,
+
+) {
+
+    var selectedItemIndex by remember { mutableStateOf(initialSelectedItemIndex) }
+    Row(
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+                .fillMaxWidth()
+                .background(DeepBlue)
+                .padding(15.dp)
+    ) {
+        items.forEachIndexed { i, item ->
+            BottomMenuItem(
+                item = item,
+                isSelected =   i==selectedItemIndex,
+                activeHighlightedColor = activeHighlightedColor,
+                activeTextColor = activeTextColor,
+                inactiveTextColor = inactiveTextColor,
+                onItemClick = {
+
+
+                    selectedItemIndex = i
+                })
+
+        }
+    }
+}
+
+
+@Composable
+fun BottomMenuItem(
+    item: BottomMenuContent, isSelected: Boolean,
+    activeHighlightedColor: Color = ButtonBlue,
+    activeTextColor: Color = Color.White,
+    inactiveTextColor: Color = AquaBlue,
+    onItemClick: () -> Unit
+
+) {
+
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+
+        modifier = Modifier.clickable {
+
+            //trigger onItemClick
+            onItemClick()
+        }
+    ) {
+
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(if (isSelected) activeHighlightedColor else Color.Transparent)
+                    .padding(10.dp)
+        ) {
+            Icon(
+                painter = painterResource(id = item.iconId),
+                contentDescription = item.title,
+                tint = if (isSelected) activeTextColor else inactiveTextColor,
+                modifier = Modifier.size(20.dp)
+            )
+        }
+
+        Text(text = item.title, color = if (isSelected) activeTextColor else inactiveTextColor)
+    }
+/*
+    Box(
+        modifier = Modifier
+                .padding(8.dp)
+                .clip(RoundedCornerShape(5.dp))
+                .background(if (isSelected) activeHighlightedColor else inactiveTextColor),
+        contentAlignment = Alignment.Center
+    ) {
+
+        Icon(
+            painter = painterResource(id = item.iconId),
+            contentDescription = item.title, modifier = Modifier.align(Alignment.Center)
+        )
+
+        Text(text = item.title, modifier = Modifier.align(Alignment.BottomCenter))
+
+    }
+*/
+
+
+}
+
+@Preview(name = "BottomMenuItemPreview")
+@Composable
+fun BottomMenuItemPreview() {
+    //BottomMenuItem(BottomMenuContent("Home", iconId = R.drawable.ic_home))
 }
